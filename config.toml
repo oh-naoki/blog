@@ -3,3 +3,5 @@ languageCode = "ja-jp"
 title = "めも"
 theme = "hugo-theme-cactus-plus"
 publishDir = "./"
+pygmentsUseClasses = true
+pygmentsCodefences = true

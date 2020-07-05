@@ -11,7 +11,7 @@
 		<title>PorterDuff を使って角丸プログレスバーを作る &middot; めも</title>
 		<link rel="shortcut icon" href="https://oh-naoki.github.io/blog/images/favicon.ico">
 		<link rel="stylesheet" href="https://oh-naoki.github.io/blog/css/style.css">
-		<link rel="stylesheet" href="https://oh-naoki.github.io/blog/css/highlight.css">
+		<link rel="stylesheet" href="https://oh-naoki.github.io/blog/css/syntax.css" />
 
 		
 		<link rel="stylesheet" href="https://oh-naoki.github.io/blog/css/monosocialiconsfont.css">
@@ -69,49 +69,49 @@
 <p>手順はまず初めに背景となる角丸の Retangle を描画してその上にプログレスバーとなる角丸ではない Rectangle を描画します。
 描画する際に使用する Paint に重ね合わせるときのルールを指定することで背景画像に対してどう切り取るか、描画順序はどうするかを決めることができます。</p>
 <p><img src="https://user-images.githubusercontent.com/16508442/83963379-ac97ed80-a8e0-11ea-9e57-9a13abc71863.png" alt="porter_duff_draw_rectangle"></p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-kt" data-lang="kt">leftBarPaint = Paint().apply {
-    color = leftColor
-    xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-}
+<div class="highlight"><pre class="chroma"><code class="language-kt" data-lang="kt"><span class="n">leftBarPaint</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">().</span><span class="n">apply</span> <span class="p">{</span>
+    <span class="n">color</span> <span class="p">=</span> <span class="n">leftColor</span>
+    <span class="n">xfermode</span> <span class="p">=</span> <span class="n">PorterDuffXfermode</span><span class="p">(</span><span class="n">PorterDuff</span><span class="p">.</span><span class="n">Mode</span><span class="p">.</span><span class="n">SRC_IN</span><span class="p">)</span>
+<span class="p">}</span>
 
-rightBarPaint = Paint().apply {
-    color = rightColor
-    xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-}
+<span class="n">rightBarPaint</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">().</span><span class="n">apply</span> <span class="p">{</span>
+    <span class="n">color</span> <span class="p">=</span> <span class="n">rightColor</span>
+    <span class="n">xfermode</span> <span class="p">=</span> <span class="n">PorterDuffXfermode</span><span class="p">(</span><span class="n">PorterDuff</span><span class="p">.</span><span class="n">Mode</span><span class="p">.</span><span class="n">SRC_IN</span><span class="p">)</span>
+<span class="p">}</span>
 
-backgroundPaint = Paint().apply {
-    color = Color.BLACK
-}
+<span class="n">backgroundPaint</span> <span class="p">=</span> <span class="n">Paint</span><span class="p">().</span><span class="n">apply</span> <span class="p">{</span>
+    <span class="n">color</span> <span class="p">=</span> <span class="n">Color</span><span class="p">.</span><span class="n">BLACK</span>
+<span class="p">}</span>
 
-canvas.drawRoundRect(
-    <span style="color:#ae81ff">0F</span>,
-    <span style="color:#ae81ff">0F</span>,
-    <span style="color:#66d9ef">this</span>.width.toFloat(),
-    <span style="color:#66d9ef">this</span>.height.toFloat(),
-    radius.px(),
-    radius.px(),
-    backgroundPaint
-)
+<span class="n">canvas</span><span class="p">.</span><span class="n">drawRoundRect</span><span class="p">(</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">width</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">height</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span>
+    <span class="n">radius</span><span class="p">.</span><span class="n">px</span><span class="p">(),</span>
+    <span class="n">radius</span><span class="p">.</span><span class="n">px</span><span class="p">(),</span>
+    <span class="n">backgroundPaint</span>
+<span class="p">)</span>
 
-canvas.drawRoundRect(
-    progressCurrentWidth.toFloat(),
-    <span style="color:#ae81ff">0F</span>,
-    <span style="color:#66d9ef">this</span>.width.toFloat(),
-    <span style="color:#66d9ef">this</span>.height.toFloat(),
-    <span style="color:#ae81ff">0F</span>,
-    <span style="color:#ae81ff">0F</span>,
-    rightBarPaint
-)
+<span class="n">canvas</span><span class="p">.</span><span class="n">drawRoundRect</span><span class="p">(</span>
+    <span class="n">progressCurrentWidth</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">width</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">height</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="n">rightBarPaint</span>
+<span class="p">)</span>
 
-canvas.drawRoundRect(
-    <span style="color:#ae81ff">0F</span>,
-    <span style="color:#ae81ff">0F</span>,
-    progressCurrentWidth.toFloat(),
-    <span style="color:#66d9ef">this</span>.height.toFloat(),
-    <span style="color:#ae81ff">0F</span>,
-    <span style="color:#ae81ff">0F</span>,
-    leftBarPaint
-)
+<span class="n">canvas</span><span class="p">.</span><span class="n">drawRoundRect</span><span class="p">(</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="n">progressCurrentWidth</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span>
+    <span class="k">this</span><span class="p">.</span><span class="n">height</span><span class="p">.</span><span class="n">toFloat</span><span class="p">(),</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="m">0F</span><span class="p">,</span>
+    <span class="n">leftBarPaint</span>
+<span class="p">)</span>
 </code></pre></div><h3 id="まとめ">まとめ</h3>
 <p>複雑な図形も PorterDuff を使えば簡単に描画できるケースもあることが分かりました。
 ソースコードは Github に載せているので何かの助けになれば幸いです</p>
