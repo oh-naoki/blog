@@ -25,49 +25,49 @@ Githubで検索すると角丸プログレスバーはいくつかでてくる�
 ![porter_duff_draw_rectangle](https://user-images.githubusercontent.com/16508442/83963379-ac97ed80-a8e0-11ea-9e57-9a13abc71863.png)
 
 ```kt
-leftBarPaint = Paint().apply {
-    color = leftColor
-    xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-}
+    leftBarPaint = Paint().apply {
+        color = leftColor
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+    }
 
-rightBarPaint = Paint().apply {
-    color = rightColor
-    xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
-}
+    rightBarPaint = Paint().apply {
+        color = rightColor
+        xfermode = PorterDuffXfermode(PorterDuff.Mode.SRC_IN)
+    }
 
-backgroundPaint = Paint().apply {
-    color = Color.BLACK
-}
+    backgroundPaint = Paint().apply {
+        color = Color.BLACK
+    }
 
-canvas.drawRoundRect(
-    0F,
-    0F,
-    this.width.toFloat(),
-    this.height.toFloat(),
-    radius.px(),
-    radius.px(),
-    backgroundPaint
-)
+    canvas.drawRoundRect(
+        0F,
+        0F,
+        this.width.toFloat(),
+        this.height.toFloat(),
+        radius.px(),
+        radius.px(),
+        backgroundPaint
+    )
 
-canvas.drawRoundRect(
-    progressCurrentWidth.toFloat(),
-    0F,
-    this.width.toFloat(),
-    this.height.toFloat(),
-    0F,
-    0F,
-    rightBarPaint
-)
+    canvas.drawRoundRect(
+        progressCurrentWidth.toFloat(),
+        0F,
+        this.width.toFloat(),
+        this.height.toFloat(),
+        0F,
+        0F,
+        rightBarPaint
+    )
 
-canvas.drawRoundRect(
-    0F,
-    0F,
-    progressCurrentWidth.toFloat(),
-    this.height.toFloat(),
-    0F,
-    0F,
-    leftBarPaint
-)
+    canvas.drawRoundRect(
+        0F,
+        0F,
+        progressCurrentWidth.toFloat(),
+        this.height.toFloat(),
+        0F,
+        0F,
+        leftBarPaint
+    )
 ```
 
 ### まとめ
